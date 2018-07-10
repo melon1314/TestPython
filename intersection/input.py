@@ -1,10 +1,37 @@
-from model.Input1 import Input1
-from model.Input2 import Input2
-from model.Input3 import Input3
+from model.SpecialInput import SpecialInput
+
+model_list = []
+
+
+def init_input_model_list():
+    input1 = SpecialInput(aliance='Fizz')
+    input2 = SpecialInput(aliance='Buzz')
+    input3 = SpecialInput(aliance='Whizz')
+    global model_list
+    model_list.append(input1)
+    model_list.append(input2)
+    model_list.append(input3)
+    return model_list
+
+
+def clear_model_list():
+    global model_list
+    model_list = []
+
+
+def update_model_by_input_list(input_list):
+    global model_list
+    for index in range(len(input_list)):
+        model_list[index].raw_int = int(input_list[index])
+    return model_list
+
+
+def get_model_list():
+    return model_list
 
 
 def input_length_check(list):
-    if len(list) == 3:
+    if len(list) == len(model_list):
         return True
     else:
         return False
@@ -29,13 +56,3 @@ def input_info():
         else:
             print('input number or format is incorrect, please input again')
 
-
-def get_input_model(input_list):
-    input_model_list = []
-    input1 = Input1(int(input_list[0]))
-    input_model_list.append(input1)
-    input2 = Input2(int(input_list[1]))
-    input_model_list.append(input2)
-    input3 = Input3(int(input_list[2]))
-    input_model_list.append(input3)
-    return input_model_list
