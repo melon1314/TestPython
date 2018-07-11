@@ -1,10 +1,8 @@
-from model.Input1 import Input1
-from model.Input2 import Input2
-from model.Input3 import Input3
+from data.InputData import input_data
 
 
 def input_length_check(list):
-    if len(list) == 3:
+    if len(list) == len(input_data.model_list):
         return True
     else:
         return False
@@ -25,17 +23,8 @@ def input_info():
         input_str = input()
         input_list = input_str.split(' ')
         if input_length_check(input_list) and input_items_check(input_list):
-            return input_list
+            input_data.init_input_list(input_list)
+            break
         else:
-            print('input number or format is incorrect, please input again')
+            print('input number or format is incorrect, please re-input again')
 
-
-def get_input_model(input_list):
-    input_model_list = []
-    input1 = Input1(int(input_list[0]))
-    input_model_list.append(input1)
-    input2 = Input2(int(input_list[1]))
-    input_model_list.append(input2)
-    input3 = Input3(int(input_list[2]))
-    input_model_list.append(input3)
-    return input_model_list
